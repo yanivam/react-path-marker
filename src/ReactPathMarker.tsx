@@ -41,8 +41,8 @@ export const PathMarker: React.FC<IProps> = (props) => {
           }
         }, [pathRef, svgRef])
 
-        const points = (markerRect.x).toString() + "," + (markerRect.y).toString()  + " " + (markerRect.x + 11).toString() + "," + (markerRect.y - 20).toString() + " " + (markerRect.x - 11).toString() + "," + (markerRect.y - 20).toString()
-        const semiCircle = "M" + markerRect.x.toString() + "," + (markerRect.y - 15).toString() + " a"+ markerRect.x.toString() + "," + markerRect.x.toString() + " 0 0,0 " + markerRect.w + ",0"
+        const points = (markerRect.x).toString() + "," + (markerRect.y).toString()  + " " + (markerRect.x + 10).toString() + "," + (markerRect.y - 20).toString() + " " + (markerRect.x - 10).toString() + "," + (markerRect.y - 20).toString()
+        const semiCircle = "M" + (markerRect.x - 10).toString() + " " + (markerRect.y - 20).toString() + "\nA"+ (5).toString() + " " + (5).toString() + " 0 0 1 " + (markerRect.x+10).toString()+ " " + (markerRect.y-20).toString()
     return (
         <g pointerEvents={"none"} >
            <polygon fill={bgColor} points={points}></polygon>
