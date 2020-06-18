@@ -29,7 +29,7 @@ function App() {
           <PathMarker svgRef={svgRef} pathRef={redRef} smallText="This is the long Red!" />
           <PathMarker svgRef={svgRef} pathRef={greenRef} smallText="Green" />
           <PathMarker svgRef={svgRef} pathRef={blueRef} smallText="BL" fontFamily={"system-ui"}/>
-          <PathMarker svgRef={svgRef} pathRef={purpleRef} smallText="Purple" fontSize={24}/>
+          <PathMarker svgRef={svgRef} pathRef={purpleRef} smallText="Purple" bgColor="#ee1122" fontSize={24}/>
           <PathMarker svgRef={svgRef} pathRef={greyRef} smallText="Grey" bgColor="#abcdef" textColor="blue"/>
           <PathMarker svgRef={svgRef} pathRef={pinkRef} smallText="Pink" textColor="pink"/>
 
