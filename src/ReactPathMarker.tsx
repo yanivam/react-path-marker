@@ -28,8 +28,8 @@ export const PathMarker: React.FC<IProps> = (props) => {
 
                 const w = pathRect.width
                 const h = pathRect.height
-                const x = pathRect.x - svgRect.x + 0.5 * w
-                const y = pathRect.y - svgRect.y + 0.5 * h
+                const x = (pathRect.x + 0.5 * w - svgRect.x) - 20
+                const y = (pathRect.y + 0.5 * h - svgRect.y)  - 38
 
                 setMarkerRect({ x: x, y: y, w: w, h: h})
             }
@@ -41,12 +41,14 @@ export const PathMarker: React.FC<IProps> = (props) => {
           }
         }, [pathRef, svgRef])
 
-        const points = (markerRect.x).toString() + "," + (markerRect.y).toString()  + " " + (markerRect.x + 10).toString() + "," + (markerRect.y - 20).toString() + " " + (markerRect.x - 10).toString() + "," + (markerRect.y - 20).toString()
-        const semiCircle = "M" + (markerRect.x - 10).toString() + " " + (markerRect.y - 20).toString() + "\nA"+ (5).toString() + " " + (5).toString() + " 0 0 1 " + (markerRect.x+10).toString()+ " " + (markerRect.y-20).toString()
+    const scale = "0.08,0.08"
+    const semiCircle = "M256,0C153.755,0,70.573,83.182,70.573,185.426c0,126.888,165.939,313.167,173.004,321.035    c6.636,7.391,18.222,7.378,24.846,0c7.065-7.868,173.004-194.147,173.004-321.035C441.425,83.182,358.244,0,256,0z M256,278.719    c-51.442,0-93.292-41.851-93.292-93.293S204.559,92.134,256,92.134s93.291,41.851,93.291,93.293S307.441,278.719,256,278.719z"
+    const transform = "translate(" + (markerRect.x) + "," + (markerRect.y) + ")\nscale(" + scale + ")"
+    console.log(markerRect)
+    console.log(transform)
     return (
         <g pointerEvents={"none"} >
-           <polygon fill={bgColor} points={points}></polygon>
-           <path fill={bgColor} d={semiCircle}></path>
+           <path transform={transform} fill={bgColor} d={semiCircle}></path>
         </g>
     )
 }
