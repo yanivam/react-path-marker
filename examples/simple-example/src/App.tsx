@@ -20,7 +20,7 @@ function App() {
           <rect width="400" height="400" stroke="black" fill="none"/>
 
           <circle cx={50} cy={50} r={50} fill="red" ref={redRef} />
-          <circle cx={100} cy={80} r={50} fill="green" ref={greenRef} />
+          <circle cx={150} cy={100} r={50} fill="green" ref={greenRef} />
           <circle cx={350} cy={350} r={30} fill="blue" ref={blueRef} />
           <rect x={320} y={50} width="50" height="50" fill="purple" ref={purpleRef}/>
           <circle cx={50} cy={320} r={10} fill="grey" ref={greyRef} />
@@ -31,7 +31,7 @@ function App() {
           <PathMarker svgRef={svgRef} pathRef={blueRef} smallText="BL" fontFamily={"system-ui"}/>
           <PathMarker svgRef={svgRef} pathRef={purpleRef} smallText="Purple" bgColor="#ee1122" fontSize={24}/>
           <PathMarker svgRef={svgRef} pathRef={greyRef} smallText="Grey" bgColor="#abcdef" textColor="blue"/>
-          <PathMarker svgRef={svgRef} pathRef={pinkRef} smallText="Pink" textColor="pink"/>
+          <PathMarker svgRef={svgRef} pathRef={pinkRef} smallText="Pink" textColor="green"/>
 
         </svg>
       </div>
