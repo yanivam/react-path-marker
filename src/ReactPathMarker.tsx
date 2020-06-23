@@ -30,7 +30,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
                 const pathRect = pathRef.current.getBoundingClientRect()
                 const markerRect = markerRef.current.getBoundingClientRect()
                 const textRect = textRef.current.getBoundingClientRect()
-
+                
                 const isLeft = ((textRect.x - svgRect.x) > (svgRect.width / 2))
 
                 const w = markerRect.width
@@ -58,7 +58,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
                 fill={bgColor}
                 d={semiCircle}
             />
-            <text ref={textRef} x={(markerRect.isLeft) ? markerRect.x + markerRect.w + 10 : markerRect.x - markerRect.w - 10} cursor={"default"} y={markerRect.y + markerRect.h} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} visibility={"hidden"}>
+            <text ref={textRef} x={(markerRect.isLeft) ? markerRect.x - 2 * markerRect.w - 10 : markerRect.x + markerRect.w + 10} cursor={"default"} y={markerRect.y + markerRect.h} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} >
                 {props.smallText}
             </text>
         </g>
