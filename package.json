@@ -1,6 +1,6 @@
 {
     "name": "react-path-marker",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "license": "MIT",
     "displayName": "React Path Marker",
     "description": "A marker for SVG paths in React",
