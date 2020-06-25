@@ -20,7 +20,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
     const [textColor, ] = useState (props["textColor"] || "black")
     const pathRef = props.pathRef
     const svgRef = props.svgRef
-    const [markerRect, setMarkerRect] = useState({ x: 0, y: 0, w: 0, h: 0, isLeft: false, textWidth: 0})
+    const [markerRect, setMarkerRect] = useState({ x: 0, y: 0, w: 0, h: 0, isLeft: false, textWidth: 0, textHeight: 0})
     const textRef = React.createRef<SVGTextElement>()
 
     useEffect(() => {
@@ -37,8 +37,9 @@ export const PathMarker: React.FC<IProps> = (props) => {
                 const x = (pathRect.x + 0.5 * pathRect.width - svgRect.x)
                 const y = (pathRect.y + 0.5 * pathRect.height - svgRect.y)
                 const textWidth = textRect.width
+                const textHeight = textRect.height
 
-                setMarkerRect({ x: x, y: y, w: w, h: h, isLeft: isLeft, textWidth: textWidth})
+                setMarkerRect({ x: x, y: y, w: w, h: h, isLeft: isLeft, textWidth: textWidth, textHeight: textHeight})
             }
         }
 
@@ -58,7 +59,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
                 fill={bgColor}
                 d={semiCircle}
             />
-            <text ref={textRef} x={(markerRect.isLeft) ? markerRect.x - markerRect.textWidth - markerRect.w + 7: markerRect.x + markerRect.w -7} cursor={"default"} y={markerRect.y} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} >
+            <text fontWeight={scale === 0.08 ? "bold" : "normal"} ref={textRef} x={(markerRect.isLeft) ? markerRect.x - markerRect.textWidth - markerRect.w + 5: markerRect.x + markerRect.w - 7} cursor={"default"} y={markerRect.y - (markerRect.h * 10 * scale) + 10} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} >
                 {props.smallText}
             </text>
         </g>
