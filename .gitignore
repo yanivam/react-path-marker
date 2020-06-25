@@ -3,6 +3,7 @@ dist/
 .firebase/
 yarn.lock
 **/.DS_Store
+.DS_Store
 examples/simple-example/package-lock.json
 package-lock.json
 **/log
