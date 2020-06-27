@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { PathTooltip } from 'react-path-tooltip'
 
 interface IProps {
   pathRef: React.RefObject<SVGElement>,
   svgRef: React.RefObject<SVGSVGElement>,
   fontSize?: number,
+  bigText?: string,
+  tooltipBgColor?: string,
   fontFamily?: string,
   bgColor?: string,
   smallText?: string,
+  tooltipTextColor?: string,
   textColor?: string
 }
 
@@ -49,6 +53,11 @@ export const PathMarker: React.FC<IProps> = (props) => {
         }
     }, [pathRef, svgRef, markerRef, textRef])
 
+    const tooltipTextColor = props.tooltipTextColor ? props.tooltipTextColor : props.textColor ? props.textColor : "white"
+    const tooltipBgColor = props.tooltipBgColor ? props.tooltipBgColor : props.bgColor ? props.bgColor : "black"
+
+    const tooltip = (props.bigText) ? <PathTooltip svgRef={svgRef} pathRef={markerRef} bgColor={tooltipBgColor} tip={props.bigText} fontFamily={fontFamily} fontSize={fontSize} textColor={tooltipTextColor} /> : <g></g>
+
     return (
         <g>
            <path 
@@ -62,6 +71,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
             <text fontWeight={scale === 0.08 ? "bold" : "normal"} ref={textRef} x={(markerRect.isLeft) ? markerRect.x - markerRect.textWidth - markerRect.w + 5: markerRect.x + markerRect.w - 7} cursor={"default"} y={markerRect.y - (markerRect.h * 10 * scale) + 10} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} >
                 {props.smallText}
             </text>
+            {tooltip}
         </g>
     )
 }
