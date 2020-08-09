@@ -26,12 +26,12 @@ function App() {
           <circle cx={50} cy={320} r={10} fill="grey" ref={greyRef} />
           <circle cx={190} cy={190} r={40} fill="pink" ref={pinkRef} />
 
-          <PathMarker svgRef={svgRef} pathRef={redRef} smallText="This is the long Red!" />
-          <PathMarker svgRef={svgRef} pathRef={greenRef} bigText="This is greenland" smallText="Green" />
-          <PathMarker svgRef={svgRef} pathRef={blueRef} smallText="BL" fontFamily={"system-ui"}/>
-          <PathMarker svgRef={svgRef} pathRef={purpleRef} bigText="Eggplant color" smallText="Purple" bgColor="#ee1122" fontSize={24}/>
-          <PathMarker svgRef={svgRef} pathRef={greyRef} bigText="small grey blue" smallText="Grey" bgColor="#abcdef" textColor="blue"/>
-          <PathMarker svgRef={svgRef} pathRef={pinkRef} bigText="Pink and green text" smallText="Pink" textColor="green"/>
+          <PathMarker svgRef={svgRef} pathRef={redRef} />
+          <PathMarker svgRef={svgRef} pathRef={greenRef}  />
+          <PathMarker svgRef={svgRef} pathRef={blueRef} />
+          <PathMarker svgRef={svgRef} pathRef={purpleRef} color="#ee1122" />
+          <PathMarker svgRef={svgRef} pathRef={greyRef} color="#abcdef" borderColor="blue"/>
+          <PathMarker svgRef={svgRef} pathRef={pinkRef} borderColor="green"/>
 
         </svg>
       </div>

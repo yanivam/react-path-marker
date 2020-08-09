@@ -10,3 +10,6 @@
 
 ## 1.0.4
 * Added tooltips to the marker so that it can be added to the map
+
+## 1.0.5
+* Changed design of marker and changed functionality to new functionality (removed tooltip from being inside of the marker)

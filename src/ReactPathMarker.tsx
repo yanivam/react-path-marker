@@ -1,77 +1,56 @@
 import React, { useState, useEffect } from 'react'
-import { PathTooltip } from 'react-path-tooltip'
 
 interface IProps {
   pathRef: React.RefObject<SVGElement>,
   svgRef: React.RefObject<SVGSVGElement>,
-  fontSize?: number,
-  bigText?: string,
-  tooltipBgColor?: string,
-  fontFamily?: string,
-  bgColor?: string,
-  smallText?: string,
-  tooltipTextColor?: string,
-  textColor?: string
+  color?: string,
+  borderColor?: string
 }
 
 export const PathMarker: React.FC<IProps> = (props) => {
-    const [fontSize, ] = useState (props["fontSize"] || 10)
-    const [fontFamily, ] = useState (props["fontFamily"] || "sans-serif")
-    const [scale, setScale] = useState(0.07)
-    const [bgColor, ] = useState (props["bgColor"] || "black")
-    const markerRef = React.createRef<SVGPathElement>()
-    const semiCircle = "M256,0C153.755,0,70.573,83.182,70.573,185.426c0,126.888,165.939,313.167,173.004,321.035    c6.636,7.391,18.222,7.378,24.846,0c7.065-7.868,173.004-194.147,173.004-321.035C441.425,83.182,358.244,0,256,0z M256,278.719    c-51.442,0-93.292-41.851-93.292-93.293S204.559,92.134,256,92.134s93.291,41.851,93.291,93.293S307.441,278.719,256,278.719z"
-    const [textColor, ] = useState (props["textColor"] || "black")
+    const [radius, setRadius] = useState(3)
+    const [color, ] = useState (props["color"] || "#ADD8E6")
+    const [borderColor, ] = useState (props["borderColor"] || "#EEEEEE")
+    const markerRef = React.createRef<SVGCircleElement>()
     const pathRef = props.pathRef
     const svgRef = props.svgRef
-    const [markerRect, setMarkerRect] = useState({ x: 0, y: 0, w: 0, h: 0, isLeft: false, textWidth: 0, textHeight: 0})
-    const textRef = React.createRef<SVGTextElement>()
-
+    const [markerRect, setMarkerRect] = useState({ x: 0, y: 0, w: 0, h: 0})
+    
     useEffect(() => {
         const updateMarker = () => {
-            if(svgRef && pathRef && svgRef.current && pathRef.current && markerRef && markerRef.current && textRef && textRef.current) {
+            if(svgRef && pathRef && svgRef.current && pathRef.current && markerRef && markerRef.current) {
                 const svgRect = svgRef.current.getBoundingClientRect()
                 const pathRect = pathRef.current.getBoundingClientRect()
                 const markerRect = markerRef.current.getBoundingClientRect()
-                const textRect = textRef.current.getBoundingClientRect()
-                const isLeft = ((pathRect.x + 0.5 * pathRect.width - svgRect.x) > (svgRect.width / 2))
 
                 const w = markerRect.width
                 const h = markerRect.height
                 const x = (pathRect.x + 0.5 * pathRect.width - svgRect.x)
                 const y = (pathRect.y + 0.5 * pathRect.height - svgRect.y)
-                const textWidth = textRect.width
-                const textHeight = textRect.height
 
-                setMarkerRect({ x: x, y: y, w: w, h: h, isLeft: isLeft, textWidth: textWidth, textHeight: textHeight})
+                setMarkerRect({ x: x, y: y, w: w, h: h})
             }
         }
 
         if (pathRef && pathRef.current) {
            window.addEventListener('resize', () => { updateMarker() })
            window.addEventListener("load", () => { updateMarker() })
+           pathRef.current.addEventListener("mouseover", () => {if (markerRef && markerRef.current) { markerRef.current.style.strokeWidth = "2"; markerRef.current.style.strokeOpacity = "0.5"; setRadius(5); }})
+           pathRef.current.addEventListener("mouseout", () => {if (markerRef && markerRef.current) { markerRef.current.style.strokeWidth = "1"; markerRef.current.style.strokeOpacity = "0.2"; setRadius(3); }})
+           
         }
-    }, [pathRef, svgRef, markerRef, textRef])
-
-    const tooltipTextColor = props.tooltipTextColor ? props.tooltipTextColor : props.textColor ? props.textColor : "white"
-    const tooltipBgColor = props.tooltipBgColor ? props.tooltipBgColor : props.bgColor ? props.bgColor : "black"
-
-    const tooltip = (props.bigText) ? <PathTooltip svgRef={svgRef} pathRef={markerRef} bgColor={tooltipBgColor} tip={props.bigText} fontFamily={fontFamily} fontSize={fontSize} textColor={tooltipTextColor} /> : <g></g>
+    }, [pathRef, svgRef, markerRef, markerRect])
 
     return (
         <g>
-           <path 
-                ref={markerRef}
-                onMouseOver={() => {setScale(0.08)}}
-                onMouseOut={() => {setScale(0.07)}}
-                transform={"translate(" + (markerRect.x - (markerRect.w * 10 * scale)) + "," + (markerRect.y - (markerRect.h  * 13 * scale)) + ")\nscale(" + scale + "," + scale + ")"}
-                fill={bgColor}
-                d={semiCircle}
-            />
-            <text fontWeight={scale === 0.08 ? "bold" : "normal"} ref={textRef} x={(markerRect.isLeft) ? markerRect.x - markerRect.textWidth - markerRect.w + 5: markerRect.x + markerRect.w - 7} cursor={"default"} y={markerRect.y - (markerRect.h * 10 * scale) + 10} fontFamily={fontFamily} fontSize={fontSize} fill={textColor} >
-                {props.smallText}
-            </text>
-            {tooltip}
+           <circle 
+            r={radius}
+            fill={color}
+            stroke={borderColor}
+            cx={markerRect.x}
+            cy={markerRect.y} 
+            ref={markerRef}
+           />
         </g>
     )
 }
