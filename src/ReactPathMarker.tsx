@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 interface IProps {
   pathRef: React.RefObject<SVGElement>,
   svgRef: React.RefObject<SVGSVGElement>,
+  markerRef?: React.RefObject<SVGCircleElement>;
   color?: string,
   borderColor?: string
 }
@@ -11,7 +12,8 @@ export const PathMarker: React.FC<IProps> = (props) => {
     const [radius, setRadius] = useState(3)
     const [color, ] = useState (props["color"] || "#ADD8E6")
     const [borderColor, ] = useState (props["borderColor"] || "#EEEEEE")
-    const markerRef = React.createRef<SVGCircleElement>()
+    const optionalNoRef = React.createRef<SVGCircleElement>()
+    const [markerRef, ] = useState (props["markerRef"] || optionalNoRef)
     const pathRef = props.pathRef
     const svgRef = props.svgRef
     const [markerRect, setMarkerRect] = useState({ x: 0, y: 0, w: 0, h: 0})

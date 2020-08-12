@@ -16,3 +16,6 @@
 
 ## 1.0.6
 * Fixed bug causing highlight to not work when selecting the marker itself
+
+## 1.0.7
+* Allow passing optional reference if you want to use the reference outside for listeners (adding a tooltip to it)
