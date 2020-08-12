@@ -51,6 +51,7 @@ The following parameters are passed to the marker component:
 | ---------- | ------ | ----------- |
 | svgRef     | React.RefObject<SVGElement> | Mandatory. A React reference object to the SVG element |
 | pathRef    | React.RefObject<SVGSVGElement> | Mandatory. A React reference object to the path element bounded to the marker |
+| markerRef    | React.RefObject<SVGCircleElement> | Optional. A React reference object to the marker itself. Default: new reference |
 | borderColor    | string | Optional. Color for marker border. Default: "black" |
 | color  | string | Optional. Color for marker background. Default: "black" |
 
