@@ -34,7 +34,7 @@ function App() {
       < div className="Main">
         <svg width="400" height="400" ref={svgRef}>
           <circle cx={50} cy={50} r={50} fill="red" ref={pathRef} />
-          <PathMarker svgRef={svgRef} pathRef={pathRef} bgColor={"blue"}/>
+          <PathMarker svgRef={svgRef} pathRef={pathRef} colro={"red"} borderColor={"blue"}/>
         </svg>
       </div>
     </div>
@@ -49,13 +49,10 @@ The following parameters are passed to the marker component:
 
 | Prop       | Type   | Description |
 | ---------- | ------ | ----------- |
-| smallText        | string | Optional. The text to be displayed on the side of the marker |
 | svgRef     | React.RefObject<SVGElement> | Mandatory. A React reference object to the SVG element |
 | pathRef    | React.RefObject<SVGSVGElement> | Mandatory. A React reference object to the path element bounded to the marker |
-| bgColor    | string | Optional. Background color. Default: "black" |
-| textColor  | string | Optional. Text color. Default: "black" |
-| fontFamily | string | Optional. The font family. Default: san-serif |
-| fontSize   | number | Optional. The font size. Default 10| 
+| borderColor    | string | Optional. Color for marker border. Default: "black" |
+| color  | string | Optional. Color for marker background. Default: "black" |
 
 **Notes:**
 

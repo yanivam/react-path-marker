@@ -13,3 +13,6 @@
 
 ## 1.0.5
 * Changed design of marker and changed functionality to new functionality (removed tooltip from being inside of the marker)
+
+## 1.0.6
+* Fixed bug causing highlight to not work when selecting the marker itself

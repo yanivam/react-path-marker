@@ -37,7 +37,6 @@ export const PathMarker: React.FC<IProps> = (props) => {
            window.addEventListener("load", () => { updateMarker() })
            pathRef.current.addEventListener("mouseover", () => {if (markerRef && markerRef.current) { markerRef.current.style.strokeWidth = "2"; markerRef.current.style.strokeOpacity = "0.5"; setRadius(5); }})
            pathRef.current.addEventListener("mouseout", () => {if (markerRef && markerRef.current) { markerRef.current.style.strokeWidth = "1"; markerRef.current.style.strokeOpacity = "0.2"; setRadius(3); }})
-           
         }
     }, [pathRef, svgRef, markerRef, markerRect])
 
@@ -49,6 +48,8 @@ export const PathMarker: React.FC<IProps> = (props) => {
             stroke={borderColor}
             cx={markerRect.x}
             cy={markerRect.y} 
+            onMouseOver={(event) => { event.currentTarget.style.strokeWidth = "2"; event.currentTarget.style.strokeOpacity = "0.5"; setRadius(5)}}
+            onMouseOut={(event) => { event.currentTarget.style.strokeWidth = "1"; event.currentTarget.style.strokeOpacity = "0.2"; setRadius(3)}}
             ref={markerRef}
            />
         </g>
