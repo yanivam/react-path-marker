@@ -19,3 +19,6 @@
 
 ## 1.0.7
 * Allow passing optional reference if you want to use the reference outside for listeners (adding a tooltip to it)
+
+## 1.0.8
+* Pointer Events set to none so that the tooltip would work when highlighting marker on worldmap

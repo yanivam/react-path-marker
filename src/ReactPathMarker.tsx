@@ -43,7 +43,7 @@ export const PathMarker: React.FC<IProps> = (props) => {
     }, [pathRef, svgRef, markerRef, markerRect])
 
     return (
-        <g>
+        <g pointerEvents={"none"}>
            <circle 
             r={radius}
             fill={color}
